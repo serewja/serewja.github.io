@@ -758,6 +758,20 @@ header .container1 {
   width: 50px;
   margin-bottom: 25px;
 }
+.contacts .container1 .container2 .contacts-info__column .pic2 {
+  background: url("img/c-Pointer.png") no-repeat 50% 0%;
+  margin: 0 auto;
+  height: 32px;
+  width: 50px;
+  margin-bottom: 25px;
+}
+.contacts .container1 .container2 .contacts-info__column .pic3 {
+  background: url("img/c-Envelope.png") no-repeat 50% 0%;
+  margin: 0 auto;
+  height: 32px;
+  width: 50px;
+  margin-bottom: 25px;
+}
 .contacts .container1 .container2 .contacts-info__column p {
   font-family: 'Source Sans Pro';
   color: #999999;
