@@ -1039,6 +1039,7 @@ h3 {
   flex-direction: row;
   padding: 0;
   margin: 0;
+  margin-bottom: 60px;
   list-style: none;
 }
 
