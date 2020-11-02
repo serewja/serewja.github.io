@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 style="text-align: center;">Висилица.</h1>
+  <p style="width: 50%; text-align: center; display: block; margin: 0 auto;">Выбрать случайное слово Пока слово не
+    угадано { Показать игроку текущее состояние игры Запросить у игрока вариант ответа Если игрок хочет выйти из игры {
+    Выйти из игры } Иначе Если вариант ответа — не одиночная буква { Сообщить игроку, что он должен ввести букву } Иначе
+    { Если такая буква есть в слове { Обновить состояние игры, подставив новую букву } } } Поздравить игрока с победой —
+    слово угадано</p>
+  <script>
+    const wordsList = ['хуй', 'пизда', 'шаурма', 'гвоздь', 'курица', 'кофе', 'компьютер'];
+    const randomIndex = Math.floor(Math.random() * (wordsList.length - 1));
+    const randomWord = wordsList[randomIndex];
+
+    const randomWordArr = randomWord.split('');
+    const secretCharsArr = randomWordArr.slice(1, -1);
+    const stars = new Array(randomWordArr.length - 2).fill('*');
+
+    let gameStatus = true;
+    let errorsCount = 0;
+    const maxErrors = 3;
+    let isSwaped;
+
+    while (gameStatus) {
+      gameStatus = confirm(
+        `
+        У вас ${errorsCount} ошибок из ${maxErrors}
+        Нужно угадать слово: ${randomWordArr[0]} ${stars.join(' ')} ${randomWordArr[randomWordArr.length - 1]}
+        Играем дальше?
+        `
+      );
+      if (gameStatus) {
+        let char = prompt('Введите одну букву. Если нажмете отмена, то игра закончится.');
+
+        while (char === null || char.trim().length !== 1) {
+          if (char === null) {
+            alert('Вы вышли из игры.');
+            gameStatus = false;
+            break;
+          }
+          char = prompt('Введите одну букву. Если нажмете отмена, то игра закончится.');
+        }
+        
+        for (let i = 0; i < secretCharsArr.length; i += 1) {
+          if (char.toLowerCase() === secretCharsArr[i].toLowerCase()) {
+            stars[i] = char.toLowerCase();
+            isSwaped = true;
+          }
+        }
+
+      } else {
+        alert('Вы вышли из игры.');
+      }
+
+      if (!stars.includes('*')) {
+        alert('ВЫ ВЫЙГРАЛИ!');
+        gameStatus = false;
+      }
+
+      if (!isSwaped) {
+        errorsCount += 1;
+      }
+
+      if (errorsCount === 3) {
+        alert('ВЫ ПРОИГРАЛИ');
+        gameStatus = false;
+      }
+    }
+  </script>
+</body>
+</html>
